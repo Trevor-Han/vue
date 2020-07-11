@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app1">
+    <p v-color="'blue'">我是段落</p>
+</div>
+<div id="app2">
+    <p v-color="'red'">我是段落</p>
+</div>
+<script>
+  /*  Vue.directive("color",{
+        //el被绑定指令的那个元素
+        bind:function (el,obj) {
+            el.style.color = obj.value;
+        }
+    });*/
+    let vue1 = new Vue({
+        el:"#app1",
+        data:{},
+        methods:{},
+        directives:{
+            "color":{
+                bind:function (el,obj) {
+                    el.style.color = obj.value;
+                }
+            }
+        }
+    });
+    let vue2 = new Vue({
+        el:"#app2",
+        data:{},
+        methods:{},
+        directives:{
+            "color":{
+                bind:function (el,obj) {
+                    el.style.color = obj.value;
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>

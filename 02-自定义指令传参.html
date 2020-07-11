@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <p v-color="curColor">我是段落</p>
+</div>
+
+<script>
+    Vue.directive("color",{
+        //el被绑定指令的那个元素
+        bind:function (el,obj) {
+            el.style.color = obj.value;
+        }
+    });
+    let vue = new Vue({
+        el:"#app",
+        data:{
+            curColor:"red"
+        },
+        methods:{
+
+        }
+    });
+</script>
+
+</body>
+</html>
