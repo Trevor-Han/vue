@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <p>{{time | dtaFormart("yyyy-MM-d")}}</p>
+</div>
+
+<script src="js/vue.js"></script>
+<script>
+    Vue.filter("dtaFormart",function (value,fmstr) {
+       let data   = new Date(value);
+       let year   = data.getFullYear();
+       let mouth  = data.getMonth()+1 + "";
+       let day    = data.getDate() + "";
+       let hour   = data.getHours() + "";
+       let minute = data.getMinutes() + "";
+       let second = data.getMinutes() + "";
+       if (fmstr && fmstr === "yyyy-MM-dd") {
+           return `${year}-${mouth.padStart(2,"0")}-${day.padStart(2,"0")}`
+       }
+       return `${year}-${mouth.padStart(2,"0")}-${day.padStart(2,"0")} ${hour.padStart(2,"0")}:${minute.padStart(2,"0")}:${second.padStart(2,"0")}`
+    });
+    let vm = new  Vue({
+       el:'#app',
+        data:{
+           time:Date.now()
+        },
+    });
+</script>
+</body>
+</html>

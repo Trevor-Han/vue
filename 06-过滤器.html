@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--过滤器：过滤器与函数和计算属性一样都是用来处理数据的
+但是过滤器一般用于格式化插入的文本数据
+1、定义全局过滤器
+vue.filter("过滤器名称"，过滤器处理函数)；
+2、如何使用全局过滤器
+{{msg | "过滤器名称"}}
+3、过滤器只能在插值语法和v-bind中使用
+-->
+<div id="app">
+    <p>{{message | formart1}}</p>
+</div>
+
+<script src="js/vue.js"></script>
+<script>
+
+   /* Vue.filter("formart",function (value) {
+        value = value.replace(/world/g,"han");
+        // console.log(value);
+        return value;
+    });*/
+    let vm = new  Vue({
+       el:'#app',
+        data:{
+           message:'hello-world,msg-world,name-world',
+        },
+        filters:{
+           "formart1":function (value) {
+               value = value.replace(/world/g,"han");
+               // console.log(value);
+               return value;
+           }
+        }
+    });
+</script>
+</body>
+</html>

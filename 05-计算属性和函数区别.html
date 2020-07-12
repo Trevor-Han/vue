@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <p>{{message}}</p>
+    <p>{{name}}</p>
+    <p>{{age}}</p>
+    <p>{{msg.split("").reverse().join("")}}</p>
+    <p>{{msg2}}</p>
+    <p>{{msg3()}}</p>
+</div>
+
+<script src="js/vue.js"></script>
+<script>
+    let vm = new  Vue({
+        el:'#app',
+        data:{
+            message:'hello world',
+            name:"lnj",
+            age:18,
+            msg:"abcdef"
+        },
+        methods:{
+            //函数每次调用都会执行，数据经常发生变化，使用函数较好
+            msg3(){
+                let str = "abcdef";
+                let res = str.split("").reverse().join("");
+                return res;
+            }
+        },
+        computed:{
+            //计算属性特点：只要返回的结果没有发生变化，那么计算属性就只会执行一次，适用于数据返回不频发的事件
+            msg2:function () {
+                let str = "abcdef";
+                let res = str.split("").reverse().join("");
+                return res;
+            }
+        }
+    });
+</script>
+</body>
+</html>
