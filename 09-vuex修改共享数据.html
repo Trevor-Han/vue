@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <father></father>
+</div>
+
+<template id="father">
+    <div>
+        <son1></son1>
+        <son2></son2>
+    </div>
+</template>
+<template id="son1">
+    <div>
+       <button @click = "add" >增加</button>
+       <button @click = "sub">减少</button>
+        <input type="text" :value = "this.$store.state.count">
+    </div>
+</template>
+<template id="son2">
+    <div>
+        <button @click = "add" >增加</button>
+        <button @click = "sub">减少</button>
+        <input type="text" :value = "this.$store.state.count">
+    </div>
+</template>
+<script src="js/vue.js"></script>
+<script src="js/vuex.js"></script>
+<script>
+    //创建vuex对象
+    const store = new Vuex.Store({
+        state:{
+            count:0
+        },
+        mutations: {
+            mAdd(state){
+                state.count +=1;
+            },
+            mSub(state){
+                state.count -=1;
+            }
+        }
+});
+
+Vue.component("father",{
+    template:"#father",
+    store:store,
+    components:{
+        "son1":{
+            template: "#son1",
+            methods:{
+                add(){
+                    this.$store.commit("mAdd");
+                },
+                sub(){
+                    this.$store.commit("mSub");
+                }
+            }
+        },
+        "son2":{
+            template: "#son2",
+            methods:{
+                add(){
+                    this.$store.commit("mAdd");
+                },
+                sub(){
+                    this.$store.commit("mSub");
+                }
+            }
+        }
+    }
+});
+
+    let vm = new  Vue({
+        el:"#app",
+        data:{
+
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <father></father>
+</div>
+
+<template id="father">
+    <div>
+        {{this.$store.getters.format}}
+        {{this.$store.getters.format}}
+        {{this.$store.getters.format}}
+    </div>
+</template>
+<script src="js/vue.js"></script>
+<script src="js/vuex.js"></script>
+<script>
+    const store = new Vuex.Store({
+       state:{
+           msg:"hello world!"
+       },
+       mutations: {},
+       getters:{
+           format(state){
+               console.log("计算属性执行");
+               return state.msg + "www.baidu.com"
+           }
+       },
+    });
+    Vue.component("father",{
+        template:"#father",
+        store:store,
+       /* data: function () {
+            return{
+                msg:"hello world!"
+            }
+        },
+        computed: {
+            formart(){
+                console.log("计算属性执行");
+                return this.msg + "www.baidu.com"
+            }
+        }*/
+    });
+    let vue = new Vue({
+        el:"#app",
+        data:{},
+        methods:{},
+        directives:{},
+        computed:{},
+        components:{},
+    })
+</script>
+</body>
+</html>
