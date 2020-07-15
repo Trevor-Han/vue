@@ -6,21 +6,56 @@
 </head>
 <body>
 
-<div id="app"></div>
+<div id="app">
+    <grandfather></grandfather>
+</div>
 
+<template id="grandfather">
+    <div>
+        <p>{{this.$store.state.msg}}</p>
+        <father></father>
+    </div>
+</template>
+<template id="father">
+    <div>
+        <p>{{this.$store.state.msg}}</p>
+        <son></son>
+    </div>
+</template>
+<template id="son">
+    <div>
+        <p>{{this.$store.state.msg}}</p>
+    </div>
+</template>
 <script src="js/vue.js"></script>
 <script src="js/vuex.js"></script>
 <script>
     //创建vuex对象
     const store = new Vuex.Store({
         state:{
-            count:0
+            msg:"hello world!"
         },
-    });
+});
+
+Vue.component("grandfather",{
+    template:"#grandfather",
+    store:store,
+    components:{
+        "father":{
+            template: "#father",
+            components: {
+                "son":{
+                    template:"#son",
+                }
+            }
+        }
+    }
+});
+
     let vm = new  Vue({
-       el:'#app',
+        el:"#app",
         data:{
-           message:'hello world',
+
         }
     });
 </script>
