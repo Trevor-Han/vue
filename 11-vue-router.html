@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--
+1.什么是Vue Router?
+Vue Router和v-if/v-show一样, 是用来切换组件的显示的
+v-if/v-show是标记来切换(true/false)
+Vue Router用哈希来切换(#/xxx)
+比v-if/v-show强大的是Vue Router不仅仅能够切换组件的显示, 还能够在切换的时候传递参数
+
+2.Vue Router使用
+2.1导入Vue Router
+2.2定义路由规则
+2.3根据路由规则创建路由对象
+2.4将路径对象挂载到Vue实例中
+2.5修改URL哈希值
+2.6通过<router-view>渲染匹配的组件
+-->
+
+<div id="app">
+
+</div>
+<template id="one">
+    <div class="onepage">
+        <p>第一个界面</p>
+    </div>
+</template>
+<template id="two">
+    <div class="twopage">
+        <p>第二个界面</p>
+    </div>
+</template>
+<script src="js/vue.js"></script>
+<script>
+    //定义组件
+    const one ={
+        template:"#one"
+    };
+    const two ={
+        template:"#two"
+    };
+    let vue = new Vue({
+        el:"#app",
+        data:{},
+        methods:{},
+        directives:{},
+        component:{
+            one:one,
+            two:two,
+        }
+    })
+</script>
+</body>
+</html>
