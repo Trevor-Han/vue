@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <abc></abc>
+    <abc></abc>
+    <abc></abc>
+</div>
+<template id="info" >
+    <button @click="add">累计 {{number}} </button>
+</template>
+<script src="js/vue.js"></script>
+<script>
+    Vue.component("abc",{
+            template:"#info",
+                data:function () {
+                return{
+                    number:0
+                }
+            },
+            methods:{
+                add(){
+                    this.number++;
+                }
+            }
+    });
+    let vm = new  Vue({
+       el:'#app',
+        data:{
+        },
+    });
+</script>
+</body>
+</html>

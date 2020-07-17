@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <button @click="show = !show">Toggle</button>
+    <transition appear
+            v-bind:css="false"
+            v-on:before-enter="beforeEnter"
+            v-on:enter="enter"
+            v-on:after-enter="afterEnter"
+    >
+        <div style="width: 500px;height: 500px;background: red" v-if="show"></div>
+    </transition>
+</div>
+
+<script src="js/vue.js"></script>
+<script>
+    let vm = new  Vue({
+       el:'#app',
+        data:{
+            show:true,
+        },
+        methods: {
+
+            beforeEnter: function (el) {
+                // 进入前
+                el.style.opacity = "0";
+            },
+            // 当与 CSS 结合使用时
+            // 回调函数 done 是可选的
+            enter: function (el, done) {
+                // 进入中
+                //想要动画执行必须写上offsetWidth/offsetHeight
+                el.offsetWidth;
+                el.style.transition = "all 3s";
+                //要想动画在一开始就执行，除了添加appear之外，还必须延迟一下回调函数
+                setTimeout(function () {
+                    done();
+                },0);
+            },
+            afterEnter: function (el) {
+                // 进入后
+                el.style.opacity = "1";
+                el.style.marginLeft = "500px";
+            },
+        }
+    });
+</script>
+</body>
+</html>

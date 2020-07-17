@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <template class="info">
+        <div>
+            <img src="image/三防飞碟.jpg">
+            <p>我是描述信息</p>
+        </div>
+    </template>
+    <template class="info">
+        <div>
+            <img src="image/三防飞碟.jpg">
+            <p>我是描述信息</p>
+        </div>
+    </template>
+    <template class="info">
+        <div>
+            <img src="image/三防飞碟.jpg">
+            <p>我是描述信息</p>
+        </div>
+    </template>
+</div>
+
+<script src="js/vue.js"></script>
+<script>
+    let vm = new  Vue({
+       el:'#app',
+        data:{
+
+        },
+        components:{
+           "abc":{
+               template:".info"
+           }
+        }
+    });
+</script>
+</body>
+</html>

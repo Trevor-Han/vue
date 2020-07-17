@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+<!--3、使用组件-->
+<abc></abc>
+</div>
+<!--<script id="info" type="text/html">
+    <div>
+        <img src="image/三防飞碟.jpg">
+        <p>我是描述信息</p>
+    </div>
+</script>-->
+<template id="info">
+    <div>
+        <img src="image/三防飞碟.jpg">
+        <p>我是描述信息</p>
+    </div>
+</template>
+<script src="js/vue.js"></script>
+<script>
+    //1、创建组件构造器
+  /*  let Profile = Vue.extend({
+        //注意点：在创建组件指定组件的模板的时候，模板只能有一个根元素
+        template:`<div>
+                      <img src="image/三防飞碟.jpg">
+                      <p>我是描述信息</p>
+                   </div>`
+    });*/
+/*  let object = {
+      template:`<div>
+                      <img src="image/三防飞碟.jpg">
+                      <p>我是描述信息</p>
+                   </div>`
+  };*/
+    //2、注册已经创建好的组件
+    //第一个参数;指定注册组件名称
+    //第二个参数：传入组件构造器
+    Vue.component("abc",{
+        template:"#info"
+    });
+    let vm = new  Vue({
+        el:'#app',
+        data:{
+
+        },
+        methods:{},
+    });
+</script>
+</body>
+</html>

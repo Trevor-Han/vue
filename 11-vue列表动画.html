@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .fade-enter-active{
+            transition: opacity 1s ease;
+        }
+        .fade-leave-active{
+            transition: all 1s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+        }
+        .fade-enter, .fade-leave-to {
+            transform: translateX(20px);
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <form action="">
+        <input type="text" v-model="name">
+        <input type="button" value="添加" @click.prevent="add">
+    </form>
+    <ul>
+        <transition-group appear tag="ul" name="fade">
+        <li v-for="(person,index) in persons" :key="person.id">
+            <input type="checkbox">
+            <span>{{index}} ----{{person.name}}</span>
+        </li>
+        </transition-group>
+    </ul>
+</div>
+
+<script src="js/vue.js"></script>
+<script>
+    let vm = new  Vue({
+       el:'#app',
+        data:{
+          persons:[
+              {name:"ls",id:1},
+              {name:"ws",id:2},
+              {name:"zs",id:3},
+          ],
+            name:"",
+            id:3
+        },
+        methods:{
+           add(){
+               this.id++;
+               let newPerson = {name:this.name,id:this.id};
+               // this.persons.push(newPreson);
+               this.persons.unshift(newPerson);
+               this.name = "";
+           }
+        }
+    });
+</script>
+</body>
+</html>
