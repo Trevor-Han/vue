@@ -22,7 +22,9 @@ Vue Router用哈希来切换(#/xxx)
 -->
 
 <div id="app">
-
+    <a href="#/one">切换到第一个界面</a>
+    <a href="#/two">切换到第二个界面</a>
+    <router-view></router-view>
 </div>
 <template id="one">
     <div class="onepage">
@@ -35,6 +37,7 @@ Vue Router用哈希来切换(#/xxx)
     </div>
 </template>
 <script src="js/vue.js"></script>
+<script src="js/vue-router.js"></script>
 <script>
     //定义组件
     const one ={
@@ -43,8 +46,17 @@ Vue Router用哈希来切换(#/xxx)
     const two ={
         template:"#two"
     };
+
+    const routes = [
+        { path: '/one', component:one},
+        { path: '/two', component:two},
+    ];
+    const router = new VueRouter({
+        routes:routes
+    });
     let vue = new Vue({
         el:"#app",
+        router:router,
         data:{},
         methods:{},
         directives:{},
