@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>20-VueRouter-嵌套路由</title>
+    <style>
+        .han-active{
+            background: slateblue;
+        }
+    </style>
+</head>
+<body>
+<!--
+1.什么是Vue Router?
+Vue Router和v-if/v-show一样, 是用来切换组件的显示的
+v-if/v-show是标记来切换(true/false)
+Vue Router用哈希来切换(#/xxx)
+比v-if/v-show强大的是Vue Router不仅仅能够切换组件的显示, 还能够在切换的时候传递参数
+
+2.Vue Router使用
+2.1导入Vue Router
+2.2定义路由规则
+2.3根据路由规则创建路由对象
+2.4将路径对象挂载到Vue实例中
+2.5修改URL哈希值
+2.6通过<router-view>渲染匹配的组件
+-->
+
+<div id="app">
+    <router-link to="/one?name=lnj&age=33" tag="button">切换到第一个界面</router-link>
+    <router-link to="/two/zs/18"  tag="button">切换到第二个界面</router-link>
+    <router-view></router-view>
+</div>
+<template id="one">
+    <div class="onepage">
+        <p>第一个界面</p>
+        <router-link to="/one/one1" tag="button">切换到第一个界面</router-link>
+        <router-link to="/one/one2"  tag="button">切换到第二个界面</router-link>
+        <router-view></router-view>
+    </div>
+</template>
+<template id="one1">
+    <div class="onepage1">
+        <p>第一个界面的子界面的第二个界面1</p>
+    </div>
+</template>
+<template id="one2">
+    <div class="onepage2">
+        <p>第一个界面的子界面的第二个界面2</p>
+    </div>
+</template>
+<template id="two">
+    <div class="twopage">
+        <p>第二个界面</p>
+    </div>
+</template>
+<script src="js/vue.js"></script>
+<script src="js/vue-router.js"></script>
+<script>
+    //定义组件
+    const one1 = {
+        template: "#one1"
+    };
+    const one2 = {
+        template: "#one2"
+    };
+    const one ={
+        template:"#one",
+        component:{
+            one1:one1,
+            one2:one2
+        },
+    };
+    const two ={
+        template:"#two",
+
+    };
+
+    const routes = [
+        // { path: '/', redirect: '/one'},
+        {
+            path: '/one',
+            component:one,
+            children:[
+                {
+                    path:"one1",
+                    component:one1
+                },
+                {
+                    path:"one2",
+                    component:one2
+                }
+            ]
+        },
+        { path: '/two/:name/:age', component:two},
+    ];
+    const router = new VueRouter({
+        routes:routes,
+        linkActiveClass: "han-active"
+    });
+    let vue = new Vue({
+        el:"#app",
+        router:router,
+        data:{},
+        methods:{},
+        directives:{},
+        component:{
+            one:one,
+            two:two,
+        }
+    });
+
+</script>
+</body>
+</html>

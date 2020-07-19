@@ -2,7 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>17-router</title>
+    <title>18-router-link</title>
+    <style>
+        .han-active{
+            background: slateblue;
+        }
+    </style>
 </head>
 <body>
 <!--
@@ -22,8 +27,8 @@ Vue Router用哈希来切换(#/xxx)
 -->
 
 <div id="app">
-    <a href="#/one">切换到第一个界面</a>
-    <a href="#/two">切换到第二个界面</a>
+    <router-link to="/one" tag="button">切换到第一个界面</router-link>
+    <router-link to="/two"  tag="button">切换到第二个界面</router-link>
     <router-view></router-view>
 </div>
 <template id="one">
@@ -48,11 +53,13 @@ Vue Router用哈希来切换(#/xxx)
     };
 
     const routes = [
+        { path: '/', redirect: '/one'},
         { path: '/one', component:one},
         { path: '/two', component:two},
     ];
     const router = new VueRouter({
-        routes:routes
+        routes:routes,
+        linkActiveClass: "han-active"
     });
     let vue = new Vue({
         el:"#app",
